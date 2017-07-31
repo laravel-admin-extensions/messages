@@ -2,8 +2,6 @@
 
 namespace Encore\Admin\Message;
 
-use Encore\Admin\Auth\Database\Menu;
-use Encore\Admin\Auth\Database\Permission;
 use Encore\Admin\Extension;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Message\Widgets\NavbarMenu;
@@ -16,6 +14,8 @@ class Messages extends Extension
         static::registerRoutes();
 
         Admin::navbar()->add(new NavbarMenu());
+
+        Admin::extend('messages', __CLASS__);
     }
 
     /**
@@ -40,23 +40,13 @@ class Messages extends Extension
         });
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function import()
     {
-        $lastOrder = Menu::max('order');
+        parent::createMenu('Messages', 'messages', 'fa-paper-plane');
 
-        Menu::create([
-            'parent_id' => 0,
-            'order'     => $lastOrder + 1,
-            'title'     => 'Messages',
-            'icon'      => 'fa-paper-plane',
-            'uri'       => 'messages',
-        ]);
-
-        // Add a permission.
-        Permission::create([
-            'name'          => 'Admin messages',
-            'slug'          => 'ext.messages',
-            'http_path'     => admin_base_path('messages*'),
-        ]);
+        parent::createPermission('Admin messages', 'ext.messages', 'messages*');
     }
 }

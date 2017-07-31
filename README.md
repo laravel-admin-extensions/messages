@@ -14,7 +14,7 @@ $ composer require encore/laravel-admin-messages
 
 $ php artisan migrate
 
-$ php artisan admin:import encore/laravel-admin-messages
+$ php artisan admin:import Encore\\Admin\\Message\\Messages
 ```
 
 Open `http://your-host/admin/messages`
