@@ -14,5 +14,7 @@ class MessageServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         }
+
+        Messages::boot();
     }
 }
