@@ -10,7 +10,7 @@ laravel-admin-messages
 ## Installation
 
 ```
-$ composer require encore/laravel-admin-messages
+$ composer require "laravel-admin-ext/messages @dev"
 
 $ php artisan migrate
 
