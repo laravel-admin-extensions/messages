@@ -2,7 +2,6 @@
 
 namespace Encore\Admin\Message;
 
-
 use Illuminate\Support\ServiceProvider;
 
 class MessageServiceProvider extends ServiceProvider

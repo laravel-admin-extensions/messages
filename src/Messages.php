@@ -27,7 +27,6 @@ class Messages extends Extension
     {
         /* @var \Illuminate\Routing\Router $router */
         Route::group(['prefix' => config('admin.route.prefix')], function ($router) {
-
             $attributes = array_merge([
                 'middleware' => config('admin.route.middleware'),
             ], static::config('route', []));

@@ -49,7 +49,6 @@ class MessageController
     public function grid()
     {
         return Admin::grid(MessageModel::class, function (Grid $grid) {
-
             $type = request()->get('type', 'inbox');
 
             $grid->model()->with('sender')->orderBy('id', 'desc')->{$type}();
@@ -78,14 +77,13 @@ class MessageController
             });
 
             $grid->actions(function (Grid\Displayers\Actions $actions) {
-
                 $actions->disableEdit();
 
-                $url = $actions->getResource() . '/create?';
+                $url = $actions->getResource().'/create?';
 
                 $url .= http_build_query([
-                    'title' => "Re:" . $actions->row->title,
-                    'to'    => $actions->row->from
+                    'title' => 'Re:'.$actions->row->title,
+                    'to'    => $actions->row->from,
                 ]);
 
                 $actions->prepend("<a class=\"btn btn-xs\" href=\"$url\"><i class=\"fa fa-reply\"></i></a>");
@@ -102,7 +100,6 @@ class MessageController
                     $tools->batch(function (Grid\Tools\BatchActions $batch) {
                         $batch->add('Mark as read', new MarkAsRead());
                     });
-
                 });
             }
         });
@@ -111,7 +108,6 @@ class MessageController
     public function form()
     {
         return Admin::form(MessageModel::class, function (Form $form) {
-
             $options = Administrator::where('id', '!=', Admin::user()->id)->get()->pluck('name', 'id');
             $defaults = [request('to')];
 
@@ -171,7 +167,7 @@ SCRIPT;
 
         Admin::script($script);
 
-        return <<<MODAL
+        return <<<'MODAL'
 <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -206,6 +202,5 @@ SCRIPT;
   </div>
 </div>
 MODAL;
-
     }
 }

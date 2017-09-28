@@ -52,7 +52,6 @@ class MessageModel extends Model
         parent::boot();
 
         static::creating(function ($model) {
-
             $model->from = Admin::user()->id;
 
             if (is_array($model->to)) {
