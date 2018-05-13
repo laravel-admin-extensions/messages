@@ -23,7 +23,7 @@ class CreateMessagesTable extends Migration
             $table->integer('to');
             $table->string('title');
             $table->text('message');
-            $table->timestamp('read_at');
+            $table->softDeletes('read_at');
             $table->timestamps();
         });
     }
